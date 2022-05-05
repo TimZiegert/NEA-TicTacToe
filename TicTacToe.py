@@ -12,7 +12,8 @@ if __name__ == "__main__":
     if len(argv) != 2:
         usage()
     if argv[1] == 'g':
-        pass
+        ui = Gui()
+        ui.run()
     elif argv[1] == 't':
         ui = Terminal()
         ui.run()
