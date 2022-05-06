@@ -5,7 +5,9 @@ class Game:
             '4': ' ' , '5': ' ' , '6': ' ' ,
             '7': ' ' , '8': ' ' , '9': ' ' }
         self.turn = "X"
-        self.count = 0
+        self.count = 1
+        self.xAmountWin = 0
+        self.oAmountWin = 0
 
     def __repr__(self):
         pass
@@ -33,7 +35,6 @@ class Game:
     def play(self,place):
         if self.theBoard[place] == ' ':
             self.theBoard[place] = self.turn
-            self.count += 1
         else:
             return False
 
@@ -44,11 +45,16 @@ class Game:
                 return "Draw"
             else:
                 pass 
+        self.switchTurn()
 
+    def switchTurn(self):
+        self.count += 1
         if self.turn == "X":
             self.turn = "O"
         else:
             self.turn = "X"
+
+
 
 
 
