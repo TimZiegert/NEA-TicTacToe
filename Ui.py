@@ -28,7 +28,7 @@ class Gui(Ui):
                 self.count += 1
                 cmd = lambda c=self.count: self.showX(c)   
                 self.buttonDict["{0}".format(self.count)] = tk.Button(self.root, text= self.text, height=3,width=6, command=cmd, state=self.state)
-                self.buttonDict["{0}".format(self.count)].grid(row=i, column=j, sticky= tk.W, pady=5, padx=5)
+                self.buttonDict["{0}".format(self.count)].grid(row=i, column=j, sticky= tk.W, pady=1, padx=1)
         self.playAgain = tk.Button(self.root, text = "Play again", height=2,width=10, command=self.restartGame).grid(row=0, column=4, sticky= tk.W, pady=5, padx=5)
         self.buttonQuit = tk.Button(self.root, text = "Quit", height=2,width=10, command=quit).grid(row=1, column=4, sticky= tk.W, pady=5, padx=5)        
         tk.Label(self.root, text=f"{self.game.turn}'s turn").grid(row=4, column=1)
@@ -41,8 +41,6 @@ class Gui(Ui):
         self.game.count = 1
         self.clearOnPlayGame()
 
-    
-                
     def showX(self, count):
         try:
             self.buttonDict[str(count)]["text"] = self.game.turn 
@@ -55,7 +53,6 @@ class Gui(Ui):
             self.buttonDict[str(count)] = self.buttonDict[str(count)]["text"]
         except:
             pass
-
         if self.game.checkWin() == "X" or self.game.checkWin() == "O":
             if self.game.checkWin() == "O":
                 self.game.xAmountWin += 1
@@ -70,7 +67,6 @@ class Gui(Ui):
             self.game.switchTurn()
             tk.Label(self.root, text=f"WINS X: {self.game.xAmountWin} O: {self.game.oAmountWin}").grid(row=2, column=4) 
             tk.Label(new, text=f"{self.game.turn} Is the Winner!").pack(pady=30)
-            tk.Button(new, text = "Ok", height=2,width=10, command=quit).pack(pady=30)
         elif self.game.count == 10:
             #Make draw window
             self.game.count += 1      
@@ -78,10 +74,6 @@ class Gui(Ui):
             new.geometry("100x100")
             new.title("Draw")
             tk.Label(new, text=f"It is a Draw!").pack(pady=30)
-    
-
-        
-
 
     def clearOnPlayGame(self):
         list = self.root.grid_slaves()
